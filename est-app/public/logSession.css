@@ -1,0 +1,435 @@
+.body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: rgb(0, 0, 0);
+  background-image: url('/img/mr_bench.jpg');
+  background-size: 110%;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  min-width: 750px;
+}
+.surroundPadding {
+  padding: 10px 10px 10px 10px;
+}
+.rowPadding {
+  padding: 2px 10px 2px 10px;
+}
+.hMargin {
+  margin: 3px 0px 3px 0px;
+}
+.flexyBoi {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.left_align {
+  display: flex;
+  text-align: left;
+}
+.calendarDay {
+  background-color: rgba(83, 83, 83, 0.4);
+  width: 13.8%;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 5px;
+  border-width: 1px;
+  padding: 0px 0px 0px 0px;
+}
+.calendarLabel {
+  background-color: rgba(83, 83, 83, 0);
+  height: 20px;
+  width: 13.8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 5px;
+  border-width: 1px;
+  padding: 0px 0px 28px 0px;
+}
+.smallSquareButton {
+  height: 80%;
+  aspect-ratio: 1;
+  border: 0px;
+}
+.stackedRows {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  height: 25%;
+  margin-top: 5%;
+  align-items: center;
+  justify-content: space-between;
+}
+.greyedDay {
+  color: rgb(95, 95, 95);
+  background-color: rgba(83, 83, 83, 0.2);
+}
+.today {
+  border: solid rgb(255, 255, 255);
+  border-width: 1px;
+}
+.calendarDay:hover {
+  background-color: rgba(255, 83, 83, 0.2);
+  transition: 100ms;
+}
+.setInputField {
+  width: 50px;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+.setInputField::placeholder {
+  text-align: center;
+}
+.grey_input_text {
+  width: 75%;
+  max-width: 250px;
+  height: 16pt;
+  font-size: 12pt;
+  font-style: italic;
+  background-color: rgba(51, 51, 51, 0.5);
+  border-radius: 5px;
+  border-width: 0px;
+  border-style: solid;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+.btn {
+  border-radius: 5px;
+  border: 0px;
+  background-color: rgb(18, 46, 168);
+  color: cornsilk;
+  width: 150px;
+  height: 40px;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.btnRed {
+  border-radius: 5px;
+  border: 0px;
+  background-color: rgb(200, 0, 0);
+  color: cornsilk;
+  width: 50px;
+  height: 25px;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.btnRed:hover {
+  transition: 100ms;
+  opacity: 50%;
+}
+.btn:hover {
+  transition: 100ms;
+  opacity: 50%;
+}
+.btn:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+.banner {
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 100% !important;
+  top: 0px;
+  text-align: right;
+  margin: 0;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  min-width: 750px;
+}
+.bannerButton {
+  background-color: rgba(68, 68, 68, 0);
+  border: 0;
+  height: 100%;
+  width: 24%;
+  color: white;
+}
+.bannerButton:hover {
+  transition: 100ms;
+  background-color: rgb(117, 117, 117, 0.4);
+  color: rgb(200, 0, 0);
+}
+.exContainer {
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  color: white;
+  padding: 10px 10px 10px 10px;
+  background-color: rgba(0, 0, 0, 0.25);
+  margin-top: 10px;
+}
+.suggestions {
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  color: white;
+  padding: 10px 10px 10px 10px;
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 35%;
+}
+.set {
+  margin-bottom: 5px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+hr {
+  border: 1px solid rgb(200, 0, 0);
+}
+.inputFieldBlk {
+  background: rgba(0, 0, 0, 0);
+  border: 0;
+  font-weight: bold;
+  color: rgb(200, 200, 200);
+  font-size: 150%;
+  font-style: italic;
+  width: 50%;
+}
+.inputFieldProtocol {
+  background: rgba(0, 0, 0, 0);
+  border: 0;
+  color: rgb(200, 200, 200);
+  font-size: 100%;
+  font-style: italic;
+  width: 50%;
+}
+.bigContainer {
+  height: 10%;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  color: white;
+  padding: 2% 2% 2% 2%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.flex_rows {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  flex-direction: row;
+  justify-content: center;
+}
+.flex_single_column {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.dashboard_box {
+  border: 2px solid rgb(200, 0, 0);
+  border-radius: 10px;
+  color: white;
+  padding: 0% 2% 0% 2%;
+  background-color: rgba(0, 0, 0, 0.9);
+  margin: 2% 0% 2% 0%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+}
+.topRow {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.leftJustify {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.modal {
+  display: flex; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d79;
+  padding-top: 50px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.popup {
+  width: 40%;
+  height: 25%;
+  background-color: rgb(22, 22, 22);
+  margin: 5% auto 50% auto;
+  border: 3px solid white;
+  border-radius: 10px;
+}
+.addex_popup {
+  width: 70%;
+  height: 70%;
+  background-color: rgb(22, 22, 22);
+  border: 3px solid white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2% 2% 2% 2%;
+}
+.hflip {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+.center-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.centerify {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.suggestion{
+  background: rgba(200,0,0,0);
+  width: min-content;
+  border: 0px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.centeredRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 10px;
+  width: 60%;
+}
+.unselectable {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+
+  /*
+    Introduced in IE 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
+  -ms-user-select: none;
+  user-select: none;
+}
+.sessionButton {
+  width: 95%;
+  height: min-content;
+  background-color: rgb(200, 0, 0);
+  border: 0px;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+.bg_green {
+  background-color: rgb(51, 255, 0);
+}
+.bg_white {
+  background-color: rgb(255, 255, 255);
+}
+.bg_yellow {
+  background-color: rgb(255, 255, 0);
+}
+.bg_grey {
+  background-color: rgb(50, 50, 50);
+}
+.bg_black {
+  background-color: rgb(0, 0, 0);
+}
+.text_white {
+  color: white;
+}
+.redBorder {
+  border: solid 3px;
+  border-radius: 10px;
+  border-color: rgba(200, 0, 0);
+}
+.setCount {
+  background-color: white;
+  font-style: italic;
+  border: 0;
+}
+.nowrap_cent_p {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  white-space: nowrap;
+}
+.exNotes {
+  width: 100%;
+  border: solid 1px;
+  border-radius: 5px;
+  border-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(131, 131, 131, 0);
+  color: white;
+  font-style: italic;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.inlineImgButton {
+  height: 90%;
+}
+.inlineImgButton:hover {
+  transition: 100ms;
+  opacity: 50%;
+}
+.inlineButton {
+  height: 90%;
+}
+.inlineButton:hover {
+  transition: 100ms;
+  opacity: 50%;
+}
+.popButton {
+  height: 25px;
+  border-radius: 5px;
+  border: 0px;
+  background-color: rgb(18, 46, 168);
+  color: cornsilk;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.popButton:hover {
+  transition: 100ms;
+  opacity: 50%;
+}
+.wrapper1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: baseline;
+}

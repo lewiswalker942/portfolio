@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link rel="shortcut icon" type="image/jpg" href="img/d.jpg"/>
+    <link rel="stylesheet" href="logSession.css">
+</head>
+<body class="body" id="body">
+    <script src="globalFunctions.js"></script>
+    <script>
+        build_nav();
+        is_logged_in();
+    </script>
+
+    <div class="surroundPadding">
+        <div class="bigContainer" id="mainBox">
+
+        </div>
+    </div>
+    
+    
+
+    <script>
+
+        //const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const days = ["S", "M", "T", "W", "T", "F", "S"];
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        var today = new Date;
+        var date0 = today.getDate();
+        var year = today.getFullYear();
+        var month = months[today.getMonth()];
+        
+        var day0 = new Date()
+        
+
+        var calendarTitle = `${month} ${year}`;
+
+        var calendarView = {
+            month: today.getMonth(),
+            year: today.getFullYear()
+        }
+
+        var firstLast = getFirstLastDay();
+        let numWeeks = 0;
+
+        
+
+
+        const rowTemplate = document.createElement("div");
+        const dayTemplate = document.createElement("div");
+        dayTemplate.setAttribute("class","calendarDay");
+        rowTemplate.setAttribute("class","rowPadding flexyBoi");        
+        const sessionTemplate = document.createElement("button");
+        sessionTemplate.innerText = "Session";
+        sessionTemplate.setAttribute("class","sessionButton")
+
+        initializeCalendar();
+        populateCalendar();
+
+
+
+
+
+
+
+
+
+
+
+    
+        function initializeCalendar() {
+            const main = document.getElementById('mainBox');
+
+            const topRow = document.createElement("div");
+            topRow.setAttribute("class","centeredRow");
+            topRow.style.height = "40px";
+
+            const arrowLeft = document.createElement("input");
+            arrowLeft.setAttribute("type","image");
+            arrowLeft.setAttribute("src","img/arrow.png");
+            arrowLeft.setAttribute("class","inlineImgButton hflip");
+            
+            const arrowRight = arrowLeft.cloneNode(true);
+            arrowRight.setAttribute("class","inlineImgButton");
+
+            arrowLeft.setAttribute("id","prevMonthBtn");
+            arrowRight.setAttribute("id","nextMonthBtn");
+            arrowLeft.addEventListener("click", prevMonth);
+            arrowRight.addEventListener("click", nextMonth);
+            
+            topRow.appendChild(arrowLeft);
+            var calTitle = document.createElement("h2");
+            calTitle.innerText = calendarTitle;
+            calTitle.setAttribute("class","center-center");
+            calTitle.setAttribute("id","calendarTitle")
+            topRow.appendChild(calTitle);
+            topRow.appendChild(arrowRight);
+
+            const centerWrapper = document.createElement("div");
+            centerWrapper.setAttribute("class","center-center");
+            centerWrapper.appendChild(topRow);
+            main.appendChild(centerWrapper);
+            main.appendChild(document.createElement("hr"));
+
+
+            const dayLabels = document.createElement("div");
+            dayLabels.setAttribute("class","rowPadding flexyBoi")
+            const dayLabel = document.createElement("div");
+            dayLabel.setAttribute("class","calendarLabel");
+            dayLabel.style.height = "20px";
+            dayLabel.style.backgroundColor = "rgba(0,0,0,0)";
+            for (let i=0; i<7; i++) {
+                newLabel = dayLabel.cloneNode(true);
+                newLabel.innerHTML = "<h3>" + days[i] + "</h3>";
+                dayLabels.appendChild(newLabel);
+            }
+
+            main.appendChild(dayLabels);
+
+        }
+
+        function nextMonth() {
+            calendarView['month'] += 1;
+            if (calendarView['month']>11) {
+                calendarView['month'] -= 12;
+                calendarView['year'] += 1;
+            }
+
+            updateCalendar();
+            populateCalendar();
+        }
+
+        function prevMonth() {
+            calendarView['month'] -= 1;
+            if (calendarView['month']<0) {
+                calendarView['month'] += 12;
+                calendarView['year'] -= 1;
+            }
+
+            updateCalendar();
+            
+        }
+
+        function updateCalendar() {
+            const title = document.getElementById("calendarTitle");
+            title.innerText = `${months[calendarView['month']]} ${calendarView['year']}`;
+            firstLast = getFirstLastDay();
+            populateCalendar();
+        }
+
+        function populateCalendar() {
+            
+            const main = document.getElementById('mainBox');
+
+            if (main.getElementsByClassName("calendarDay").length > 0) {
+                // Delete existing cells
+                for (let i = 0; i<numWeeks; i++) {
+                    el = document.getElementById("row"+i);
+                    el.remove();
+                }
+            }
+
+            dayCounter = -firstLast[0];
+            numDays = daysInMonth(calendarView['month'],calendarView['year']);
+            numDaysPrev = daysInMonth(calendarView['month']-1,calendarView['year']);
+            todaysDate = today.getDate()-1;
+            
+            const addButton = document.createElement("input");
+            addButton.setAttribute("type","image")
+            addButton.setAttribute("title","Add Session")
+            addButton.setAttribute("class","smallSquareButton");
+            addButton.setAttribute("src","img/plus.png")
+
+            if (numDays+firstLast[0] > 28) {
+                numWeeks = 5;
+            }
+            if (numDays+firstLast[0] > 35) {
+                numWeeks += 1;
+            }
+            
+            for (let week = 0; week<numWeeks; week++) {
+                
+                row = rowTemplate.cloneNode(true);
+                row.setAttribute("id","row"+week)
+                for (let weekday=0; weekday<7; weekday++) {
+                    plusBtn = addButton.cloneNode(true);
+                    plusBtn.addEventListener("click", createSession);
+                    day = dayTemplate.cloneNode(true)
+                    
+                    if (dayCounter==todaysDate && today.getMonth()==calendarView.month && today.getFullYear()==calendarView.year) {
+                        day.setAttribute("class","calendarDay today");
+                    }
+                    date = document.createElement("h4");
+                    date.style.height = "100%";
+                    date.setAttribute("class","unselectable");
+                    wrapper = document.createElement("div");
+                    wrapper.setAttribute("class","stackedRows");
+
+                    if (dayCounter>=0 && dayCounter<=numDays-1) {
+                        boxNumber = (dayCounter+1);
+                        day_ID = "day_"+boxNumber+"_"+(calendarView.month+1)+"_"+calendarView.year
+                    } else if (dayCounter<0) {
+                        boxNumber = numDaysPrev+dayCounter+1;
+                        day.setAttribute("class","calendarDay greyedDay")
+                        day_ID = "day_"+boxNumber+"_"+(calendarView.month+0)+"_"+calendarView.year
+                    } else if (dayCounter >= numDays) {
+                        boxNumber = 1+dayCounter-numDays;
+                        day.setAttribute("class","calendarDay greyedDay")
+                        day_ID = "day_"+boxNumber+"_"+(calendarView.month+2)+"_"+calendarView.year
+                    }
+                    date.innerText = boxNumber;
+
+                    
+                    
+                    wrapper.appendChild(date);
+                    wrapper.appendChild(plusBtn);
+                    day.appendChild(wrapper);
+                    
+                    day.setAttribute("id",day_ID)
+                    row.appendChild(day);
+                    dayCounter += 1;
+
+                    if (week == 0 && weekday==0) {
+                        y = calendarView.year;
+                        if (dayCounter<0) {m = calendarView.month-1;}
+                        else {m = calendarView.month;}
+                        if (m<0) {
+                            m += 12;
+                            y -= 1;
+                        }
+
+                        calendarView.day0 = `${boxNumber}/${m+1}/${y}`;
+                        
+                    }
+                    
+            }
+            
+
+                main.appendChild(row)
+            }
+            if (dayCounter>numDays) {
+                m = calendarView.month+2;
+                if (calendarView.month==11) {
+                    y = calendarView.year+1;
+                    m = 1;
+                }
+            } else {
+                m = calendarView.month+1;
+                y = calendarView.year;
+            }
+            calendarView.dayEnd = `${boxNumber}/${m}/${y}`;
+            console.log("calendarView = ");
+            console.log(calendarView);
+            
+
+        }
+
+        
+        function createSession(event) {
+            const day_cell = event.currentTarget.parentElement.parentElement.getAttribute("id");
+            const max_sessions = 1;
+            const num_sessions = event.currentTarget.parentElement.parentElement.children.length-1;
+            if (num_sessions<max_sessions) {
+                session = sessionTemplate.cloneNode(true);
+                const session_date = day_cell
+                console.log(session_date)
+                session.setAttribute("id","session_" + session_date);
+                session.setAttribute("class","sessionButton bg_white");
+                document.getElementById(day_cell).appendChild(session);
+                // Send new session to server to add to DB
+                // Directly open new session?
+                const userID = 69420;
+                const queryString = "?retrieve_data=" + "false" + "&uid=" + userID + "&session_date=" + session_date.slice(4);
+                window.location.href = "logSession.html" + queryString;
+            }
+        }
+        
+              
+
+        function getFirstLastDay() {
+            const firstDay = new Date(calendarView['year'], calendarView['month'], 1);
+            const lastDay = new Date(calendarView['year'], calendarView['month'] + 1, 0);
+            return [firstDay.getDay(), lastDay.getDay()];
+        }
+
+        function daysInMonth (month, year) {
+            return new Date(year, month+1, 0).getDate();
+        }
+        
+    </script>
+</body>
+</html>

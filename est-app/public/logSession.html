@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Session</title>
+    <link rel="shortcut icon" type="image/jpg" href="img/d.jpg"/>
+    <link rel="stylesheet" href="logSession.css">
+</head>
+
+<body class="body" id="body">
+    <script src="globalFunctions.js"></script>
+    <script>
+        build_nav()
+        is_logged_in()
+    </script>
+
+
+    <div style="text-align: center; color: white";>
+        <h1>Workout</h1>
+        <div id="date_field">
+            <h3>Date: undefined</h2>
+        </div>
+        
+    </div>
+
+
+    <div style="padding: 10px 10px 10px 10px;">
+        <div class="bigContainer" id="sessionBox">
+            <div class="centerify">
+                <button id="test" class="btn" onclick="addExPopUp()">A Link</button>
+                <button id="addExBtn" class="btn" onclick="addExercise()">Add Exercise</button>
+            </div>
+    
+    
+        <hr>
+            <div id="bottomButtons" class="centerify">
+                <button onclick="sendToServer()" class="btn">Save</button>
+                <button class="btn">Mark as Completed</button>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+    
+
+
+
+    <script src="logSession.js"></script>
+</body>
+</html>

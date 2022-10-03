@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="logSession.css">
+    <style>
+        .body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .box {
+            border: black ;
+            border-radius: 5px;
+            border-width: 2px;
+            border-style: solid;
+            width: 20%;
+            height: min-content;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="body" id="body" style="background-image: url('/img/mr_bench.jpg'); background-size: 120%">
+    <script src="globalFunctions.js"></script>
+    <script> build_nav()</script>
+
+    <div class="redBorder roundCorners" style="width: 300px; margin-top:10%; padding: 3%; background-color:rgba(0,0,0,0.9);">
+
+        <div class="centerify"><img src="img/est_logo_transp.png" width=70%></div>
+
+        <h1 class="text_white center-center">App Login</h1>
+
+        <div class="centerify"><input type="text" class="grey_input_text" id="getUserID" placeholder="Enter Email..."></div>
+        <div class="centerify"><input type="password" class="grey_input_text" style="" id="getPwd" placeholder="Enter Password..."></div>
+
+        <div class="centerify"><button id="login_button" class="btn">Log In</button></div>
+        <div class="centerify"><button id="register_button" class="btn">Register</button></div>
+
+
+    </div>
+
+
+    
+    <script>
+        document.getElementById("login_button").addEventListener("click",send_username_pwd);
+        document.getElementById("register_button").addEventListener("click",send_username_pwd);
+        
+        
+
+
+        async function getFunction() {
+            var date = document.getElementById("getPwd").value;
+            var userID = document.getElementById("getUserID").value;
+
+            
+            const options = {
+                method: "GET",
+            };
+            const query = "/api?user=" + userID + "&date=" + date;
+
+
+            const response = await fetch(query,options);
+            const responseData = await response.json();
+
+            console.log(responseData['msg']);
+            // Make request
+            document.getElementById("getTest_output").innerText = responseData['msg'];
+        }
+        
+    </script>
+</body>
+</html>

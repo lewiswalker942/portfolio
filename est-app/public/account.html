@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="logSession.css">
+</head>
+<body class="body" id="body">
+    <script src="globalFunctions.js"></script>
+    <script>
+        build_nav();
+        is_logged_in();
+    </script>
+    <h1 style="color: white" class="centerify">Account</h1>
+    <h3 style="color: white" class="centerify">Coming Soon</h3>
+
+    <script>
+        d1 = document.createElement("div");
+        d1.setAttribute("class","centerify");
+
+        b1 = document.createElement("button");
+        b1.setAttribute("onclick","log_out()")
+        b1.innerHTML = 'Log Out!'
+
+        d1.appendChild(b1)
+        document.getElementById("body").appendChild(d1)
+
+        function log_out() {
+            console.log('logging out');
+            deleteCookie('email');
+            deleteCookie('auth_key');
+            gotoLink('login.html');
+        }
+    </script>
+</body>
+</html>
